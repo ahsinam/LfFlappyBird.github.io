@@ -3,12 +3,12 @@ class Bird {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
+    this.birdie = new Image();
+    this.birdie.src = "../bird2.png";
   }
 
   drawBird() {
-    let birdImage = new Image();
-    birdImage.src = "../bird2.png";
-    this.ctx.drawImage(birdImage, this.x, this.y, 90, 90);
+    this.ctx.drawImage(this.birdie, this.x, this.y, 90, 90);
   }
 
   moveBird() {
