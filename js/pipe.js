@@ -1,27 +1,52 @@
 const PIPE_WIDTH = 40;
-let velocityX = -1;
+const PIPE_HEIGHT = 320;
+const maxPipePositionY = -200;
+const PIPE_GAP = 150;
+const VELOCITYX = -1;
 let pipeInstances = [];
 
 class Pipe {
-  constructor(ctx, x, y) {
+  constructor(ctx, bird, score) {
     this.ctx = ctx;
-    this.x = x;
-    this.y = y;
-    this.width = PIPE_WIDTH;
-    this.height = 512;
-    this.passed = false;
+    this.pipePositionX = [];
+    this.bird = bird;
+    this.score = score;
+    this.topPipe = {
+      topX: canvas.width,
+      topY: 0,
+    };
+
+    this.bottomPipe = {
+      bottomX: canvas.width,
+      bottomY: canvas.height,
+    };
+    this.dx = 3;
   }
 
   //Top Pipe
   drawPipe() {
+    // for (let count = 0; count < this.pipePositionX.length; count++) {
+    //   let p = this.xPositonPipes[count];
+
+    //   let topYPositionPipe = p.y;
+    //   let bottomYPositionPipe = p.y + this.spriteHeight + this.gapBetweenPipes;
+
     this.ctx.fillStyle = "green";
-    this.ctx.fillRect(this.x, this.y, this.width - 100, this.height);
+    //Top pipe
+
+    this.ctx.fillRect(this.topPipe.topX, this.topPipe.topY, PIPE_WIDTH, 100);
+    this.ctx.fillRect(
+      this.bottomPipe.bottomX,
+      this.bottomPipe.bottomY,
+      PIPE_WIDTH,
+      100
+    );
+    // }
   }
 
   movePipe() {
-    pipeInstances.forEach((pipe) => {
-      pipe.x += velocityX;
-      this.drawPipe();
-    });
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.topPipe.topX += -1;
+    this.bottomPipe.bottomX += -1;
   }
 }

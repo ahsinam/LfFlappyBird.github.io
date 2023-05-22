@@ -8,8 +8,8 @@ class Background {
     this.y = y;
     this.ctx = canvas.getContext("2d");
     this.bird = new Bird(this.ctx, 100, 100);
-    this.pipes = new Pipe(this.ctx, canvas.width, 0);
-    pipeInstances.push(this.pipes);
+    this.pipes = new Pipe(this.ctx, this.bird, 0);
+    this.TIMER = null;
   }
 
   drawBackground() {
@@ -26,10 +26,10 @@ class Background {
 
   init = () => {
     window.requestAnimationFrame(this.init);
-    this.drawBackground();
+    // this.drawBackground();
     this.bird.drawBird();
     this.pipes.drawPipe();
-    setInterval(() => {
+    this.TIMER = setInterval(() => {
       this.pipes.movePipe();
     }, 1000);
   };
