@@ -12,7 +12,7 @@ class GetReady {
     this.imageWidth = canvas.width;
     this.imageHeight = canvas.height;
     this.backgroundImage = new Image();
-    this.backgroundImage.src = "/js/images/flappyBirdBackground.png";
+    this.backgroundImage.src = "../flappyBirdBackground.png";
 
     this.startButton = button;
   }
