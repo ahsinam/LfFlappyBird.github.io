@@ -4,13 +4,13 @@ class Bird {
     this.x = x;
     this.y = y;
     this.birdie = new Image();
-    this.birdie.src = "/js/images/bird2.png";
+    this.birdie.src = "./bird2.png";
 
     this.upBird = new Image();
     this.downBird = new Image();
 
-    this.upBird.src = "/js/images/flappyUp.png";
-    this.downBird.src = "/js/images/flappyDown.png";
+    this.upBird.src = "./flappyUp.png";
+    this.downBird.src = "./flappyDown.png";
 
     this.currentBird = this.birdie;
 
