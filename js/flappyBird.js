@@ -17,7 +17,8 @@ class FlappyBirdGame {
     this.restartButton = new RestartGameButton(
       this.ctx,
       restartTextXpos,
-      restartTextYpos
+      restartTextYpos,
+      this.pipes
     );
 
     this.getReady = new GetReady(this.ctx, this.bird, this.startButton);
@@ -87,7 +88,6 @@ class FlappyBirdGame {
         this.getReady.scoreBoard();
         this.bird.drawBird();
         this.restartButton.restartGameButton();
-        this.pipes = [new Pipe(this.ctx, this.bird, score, 400)];
       }
     }
   };

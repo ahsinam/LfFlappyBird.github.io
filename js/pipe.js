@@ -59,15 +59,15 @@ class Pipe {
 
   detectCollision() {
     if (
-      (this.bird.x < this.topPipe.topX + PIPE_WIDTH &&
-        this.bird.x + this.bird.birdWidth > this.topPipe.topX &&
-        this.bird.y < this.topPipe.topY + PIPE_HEIGHT &&
-        this.bird.y + this.bird.birdHeight > this.topPipe.topY) ||
-      (this.bird.x < this.bottomPipe.bottomX + PIPE_WIDTH &&
-        this.bird.x + this.bird.birdWidth > this.bottomPipe.bottomX &&
-        this.bird.y < this.bottomPipe.bottomY + PIPE_HEIGHT &&
-        this.bird.y + this.bird.birdHeight > this.bottomPipe.bottomY) ||
-      Math.floor(this.bird.y) + 50 > canvas.height
+      (this.bird.x + this.bird.birdWidth > this.topPipe.topX &&
+        this.bird.x < this.topPipe.topX + PIPE_WIDTH &&
+        this.bird.y + this.bird.birdHeight > this.topPipe.topY &&
+        this.bird.y < this.topPipe.topY + PIPE_HEIGHT) ||
+      (this.bird.x + this.bird.birdWidth > this.bottomPipe.bottomX &&
+        this.bird.x < this.bottomPipe.bottomX + PIPE_WIDTH &&
+        this.bird.y + this.bird.birdHeight > this.bottomPipe.bottomY &&
+        this.bird.y < this.bottomPipe.bottomY + PIPE_HEIGHT) ||
+      Math.floor(this.bird.y) + this.bird.birdHeight > canvas.height
     ) {
       gameEnd = true;
     }

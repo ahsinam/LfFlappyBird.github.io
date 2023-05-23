@@ -23,13 +23,15 @@ class StartButton {
 }
 
 class RestartGameButton {
-  constructor(ctx, x, y) {
+  constructor(ctx, x, y, pipes) {
     this.ctx = ctx;
     this.textXPos = x;
     this.textYPos = y;
+    this.pipes = pipes;
 
     addEventListener("click", (e) => {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       gameStart = true;
       gameEnd = false;
       score = 0;

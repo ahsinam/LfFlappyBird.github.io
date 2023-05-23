@@ -1,17 +1,16 @@
-
 class Bird {
   constructor(ctx, x, y) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
     this.birdie = new Image();
-    this.birdie.src = "../images/bird2.png";
+    this.birdie.src = "/js/images/bird2.png";
 
     this.upBird = new Image();
     this.downBird = new Image();
 
-    this.upBird.src = "../images/flappyUp.png";
-    this.downBird.src = "../images/flappyDown.png";
+    this.upBird.src = "/js/images/flappyUp.png";
+    this.downBird.src = "/js/images/flappyDown.png";
 
     this.currentBird = this.birdie;
 
