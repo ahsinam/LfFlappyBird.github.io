@@ -23,6 +23,8 @@ class Pipe {
       bottomY: canvas.height - this.bottomHeight,
     };
     this.dx = 3;
+
+    this.crossed = false;
   }
 
   //Top Pipe
@@ -42,15 +44,17 @@ class Pipe {
       PIPE_WIDTH,
       this.bottomHeight
     );
-    // }
   }
 
   movePipe() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.topPipe.topX += VELOCITYX;
     this.bottomPipe.bottomX += VELOCITYX;
-
     this.detectCollision();
+    if (this.topPipe.topX + PIPE_WIDTH < this.bird.x && !this.crossed) {
+      score++;
+      this.crossed = true;
+    }
   }
 
   detectCollision() {

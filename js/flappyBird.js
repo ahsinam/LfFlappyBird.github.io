@@ -11,11 +11,11 @@ class FlappyBirdGame {
     this.y = y;
     this.ctx = canvas.getContext("2d");
     this.bird = new Bird(this.ctx, 100, 400);
-    this.pipes = [new Pipe(this.ctx, this.bird, 0, 400)];
+    this.pipes = [new Pipe(this.ctx, this.bird, score, 400)];
     this.TIMER = null;
     this.signal = 0;
 
-    this.getReady = new GetReady(this.bird);
+    this.getReady = new GetReady(this.ctx, this.bird);
 
     addEventListener("keydown", (e) => {
       if (e.key == " ") {
@@ -33,54 +33,45 @@ class FlappyBirdGame {
 
   init = () => {
     window.requestAnimationFrame(this.init);
+
     if (gameStart == false) {
       this.getReady.beforeStartScreen();
     }
 
     if (gameStart == true) {
-      this.bird.moveBird();
-      for (let pipe of this.pipes) {
-        pipe.drawPipe();
-      }
-
-      if (this.TIMER) clearInterval(this.TIMER);
-
-      this.TIMER = setInterval(() => {
+      if (gameEnd == false) {
+        this.bird.moveBird();
         for (let pipe of this.pipes) {
-          pipe.movePipe();
+          this.getReady.scoreBoard();
+          pipe.drawPipe();
         }
-        this.signal += 1;
-        if (!(this.signal % 100)) {
-          this.bird.drawBird();
-          this.signal = 0;
-          this.pipes.push(new Pipe(this.ctx, this.bird, 0, getRandomValue()));
-          if (this.pipes.length > 7) {
-            this.pipes.shift();
+
+        if (this.TIMER) clearInterval(this.TIMER);
+
+        this.TIMER = setInterval(() => {
+          for (let pipe of this.pipes) {
+            pipe.movePipe();
           }
+
+          this.signal += 1;
+          if (!(this.signal % 100)) {
+            this.bird.drawBird();
+            this.signal = 0;
+            this.pipes.push(new Pipe(this.ctx, this.bird, 0, getRandomValue()));
+            if (this.pipes.length > 7) {
+              this.pipes.shift();
+            }
+          }
+        }, 10);
+        this.bird.drawBird();
+      } else if (gameEnd == true) {
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem("highScore", score);
         }
-      }, 10);
-      this.bird.drawBird();
+        this.getReady.afterGameEnds();
+      }
     }
-    // this.bird.moveBird();
-    // for (let pipe of this.pipes) {
-    //   pipe.drawPipe();
-    // }
-
-    // if (this.TIMER) clearInterval(this.TIMER);
-
-    // this.TIMER = setInterval(() => {
-    //   for (let pipe of this.pipes) {
-    //     pipe.movePipe();
-    //   }
-    //   this.signal += 1;
-    //   if (!(this.signal % 100)) {
-    //     this.bird.drawBird();
-    //     this.signal = 0;
-    //     this.pipes.push(new Pipe(this.ctx, this.bird, 0, getRandomValue()));
-    //     if (this.pipes.length > 7) this.pipes.shift();
-    //   }
-    // }, 10);
-    // this.bird.drawBird();
   };
 }
 

@@ -1,10 +1,12 @@
+// localStorage.setItem("high", score.high);
+
 class Bird {
   constructor(ctx, x, y) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
     this.birdie = new Image();
-    this.birdie.src = "../bird2.png";
+    this.birdie.src = "../images/bird2.png";
 
     this.velocityY = 0;
     this.gravity = 0.4;
@@ -27,7 +29,7 @@ class Bird {
     if (moveUp == true) {
       this.velocityY = -6;
       this.velocityY += this.gravity;
-      //Bird doesn't above the boundry.
+      //Bird doesn't go above the boundry.
       this.y = Math.max(this.y + this.velocityY, 0);
       this.drawBird();
     } else {
