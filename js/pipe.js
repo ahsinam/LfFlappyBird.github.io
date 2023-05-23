@@ -1,9 +1,9 @@
-const PIPE_WIDTH = 40;
-const PIPE_HEIGHT = 320;
-const maxPipePositionY = -200;
-const PIPE_GAP = 150;
-const VELOCITYX = -3;
-let pipeInstances = [];
+// const PIPE_WIDTH = 40;
+// const PIPE_HEIGHT = 320;
+// const maxPipePositionY = -200;
+// const PIPE_GAP = 250;
+// const VELOCITYX = -3;
+// let pipeInstances = [];
 
 class Pipe {
   constructor(ctx, bird, score, topHeight) {
@@ -49,5 +49,23 @@ class Pipe {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.topPipe.topX += VELOCITYX;
     this.bottomPipe.bottomX += VELOCITYX;
+
+    this.detectCollision();
+  }
+
+  detectCollision() {
+    if (
+      (this.bird.x < this.topPipe.topX + PIPE_WIDTH &&
+        this.bird.x + this.bird.birdWidth > this.topPipe.topX &&
+        this.bird.y < this.topPipe.topY + PIPE_HEIGHT &&
+        this.bird.y + this.bird.birdHeight > this.topPipe.topY) ||
+      (this.bird.x < this.bottomPipe.bottomX + PIPE_WIDTH &&
+        this.bird.x + this.bird.birdWidth > this.bottomPipe.bottomX &&
+        this.bird.y < this.bottomPipe.bottomY + PIPE_HEIGHT &&
+        this.bird.y + this.bird.birdHeight > this.bottomPipe.bottomY) ||
+      Math.floor(this.bird.y) + 50 > canvas.height
+    ) {
+      gameEnd = true;
+    }
   }
 }
