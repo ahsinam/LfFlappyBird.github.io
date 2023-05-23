@@ -6,13 +6,15 @@ const gameStates = {
 };
 
 class GetReady {
-  constructor(ctx, bird) {
+  constructor(ctx, bird, button) {
     this.ctx = ctx;
     this.bird = bird;
     this.imageWidth = canvas.width;
     this.imageHeight = canvas.height;
     this.backgroundImage = new Image();
     this.backgroundImage.src = "../images/flappyBirdBackground.png";
+
+    this.startButton = button;
   }
   beforeStartScreen() {
     this.drawBackground();
@@ -21,6 +23,7 @@ class GetReady {
     this.ctx.fillStyle = "black";
     this.ctx.fillText("High score", 240, 70);
     this.ctx.fillText(`${highScore}`, 400, 70);
+    this.startButton.starGameButton();
   }
 
   drawBackground() {
