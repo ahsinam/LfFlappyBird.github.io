@@ -22,31 +22,46 @@ class StartButton {
   }
 }
 
-class RestartGameButton {
-  constructor(ctx, x, y, pipes) {
+class RestartButton {
+  constructor(ctx, bird, pipes, flappyBird) {
+    this.width = 140;
+    this.height = 40;
     this.ctx = ctx;
-    this.textXPos = x;
-    this.textYPos = y;
-    this.pipes = pipes;
 
-    addEventListener("click", (e) => {
-      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.bird = new Bird(this.ctx, birdXpos, birdYpos);
-      gameStart = true;
-      gameEnd = false;
-      score = 0;
+    this.buttonX = (canvas.width - this.width) / 2;
+    this.buttonY = (canvas.height - this.height) / 2;
+
+    this.thresholdTopX = this.buttonX;
+    this.thresholdTopY = this.buttonY;
+
+    this.thresholdBottomX = this.buttonX + this.width;
+    this.thresholdBottomY = this.buttonY + this.height;
+
+    addEventListener("click", (ev) => {
+      if (
+        this.thresholdTopX <= ev.offsetX &&
+        this.thresholdTopY <= ev.offsetY &&
+        this.thresholdBottomX >= ev.offsetX &&
+        this.thresholdBottomY >= ev.offsetY
+      ) {
+        if (gameEnd) {
+          gameEnd = false;
+          gameStart = false;
+          pipeInstances = [];
+          score = 0;
+          bird.reset();
+          flappyBird.reset();
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
     });
   }
-  restartGameButton() {
-    this.ctx.fillStyle = "green";
-    this.ctx.fillRect(
-      restartRectXpos,
-      restartRectYpos,
-      restartRectWidth,
-      restartRectHeight
-    );
-    this.ctx.font = "bold 24px Verdana";
+  drawButton() {
+    this.ctx.fillStyle = "yellow";
+    this.ctx.rect(this.buttonX, this.buttonY, this.width, this.height);
+    this.ctx.fill();
     this.ctx.fillStyle = "black";
-    this.ctx.fillText("Restart Game", restartTextXpos, restartTextYpos);
+    this.ctx.font = "bold 24px Verdana";
+    this.ctx.fillText("Restart", this.buttonX + 20, this.buttonY + 28);
   }
 }
