@@ -14,7 +14,6 @@ class FlappyBirdGame {
       startButtonYpos
     );
 
-
     this.restart = new RestartButton(this.ctx, this.bird, this.pipes, this);
 
     this.getReady = new GetReady(this.ctx, this.bird, this.startButton);
@@ -31,6 +30,13 @@ class FlappyBirdGame {
         moveUp = false;
       }
     });
+  }
+  reset() {
+    this.getReady = new GetReady(this.ctx, this.bird);
+    this.pipes = [new Pipe(this.ctx, this.bird, score, 400)];
+    if (this.TIMER) clearInterval(this.TIMER);
+    this.TIMER = null;
+    this.signal = 0;
   }
 
   init = () => {

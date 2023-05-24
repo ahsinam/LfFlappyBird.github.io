@@ -8,7 +8,7 @@ class StartButton {
       gameStart = true;
     });
   }
-  starGameButton() {
+  startGameButton() {
     this.ctx.fillStyle = "green";
     this.ctx.fillRect(
       startRectXpos,

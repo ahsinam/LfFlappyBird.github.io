@@ -1,16 +1,15 @@
 class Bird {
   constructor(ctx, x, y) {
     this.ctx = ctx;
+    this.originalPosition = [x, y];
     this.x = x;
     this.y = y;
     this.birdie = new Image();
     this.birdie.src = "./bird2.png";
 
-    // this.animatedBird = new Image();
     this.upBird = new Image();
     this.downBird = new Image();
 
-    // this.animatedBird.src = "./animatedBird.gif";
     this.upBird.src = "./flappyUp.png";
     this.downBird.src = "./flappyDown.png";
 
@@ -48,6 +47,28 @@ class Bird {
       this.velocityY *= this.gravity;
       this.y -= this.velocityY;
     }
+    this.drawBird();
+  }
+
+  reset() {
+    this.x = this.originalPosition[0];
+    this.y = this.originalPosition[1];
+    this.birdie = new Image();
+    this.birdie.src = "./bird2.png";
+
+    this.upBird = new Image();
+    this.downBird = new Image();
+
+    this.upBird.src = "./flappyUp.png";
+    this.downBird.src = "./flappyDown.png";
+
+    this.currentBird = this.birdie;
+
+    this.velocityY = -6;
+    this.gravity = 1.018;
+    this.birdWidth = 50;
+    this.birdHeight = 50;
+
     this.drawBird();
   }
 }
