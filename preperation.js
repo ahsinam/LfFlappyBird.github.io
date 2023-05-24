@@ -24,6 +24,7 @@ class GetReady {
     this.ctx.fillText("High score", 240, 70);
     this.ctx.fillText(`${highScore}`, 400, 70);
     this.startButton.starGameButton();
+    this.ctx.fillText("Press Space button inorder to move the bird.", 240, 150);
   }
 
   drawBackground() {

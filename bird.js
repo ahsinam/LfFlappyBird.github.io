@@ -6,9 +6,11 @@ class Bird {
     this.birdie = new Image();
     this.birdie.src = "./bird2.png";
 
+    // this.animatedBird = new Image();
     this.upBird = new Image();
     this.downBird = new Image();
 
+    // this.animatedBird.src = "./animatedBird.gif";
     this.upBird.src = "./flappyUp.png";
     this.downBird.src = "./flappyDown.png";
 

@@ -31,7 +31,7 @@ class RestartGameButton {
 
     addEventListener("click", (e) => {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.pipes = [new Pipe(this.ctx, this.bird, score, 400)];
+      this.bird = new Bird(this.ctx, birdXpos, birdYpos);
       gameStart = true;
       gameEnd = false;
       score = 0;

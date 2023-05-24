@@ -88,6 +88,8 @@ class FlappyBirdGame {
         this.getReady.scoreBoard();
         this.bird.drawBird();
         this.restartButton.restartGameButton();
+        this.pipes = [new Pipe(this.ctx, this.bird, score, 400)];
+        this.bird = new Bird(this.ctx, birdXpos, birdYpos);
       }
     }
   };
